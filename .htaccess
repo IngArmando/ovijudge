@@ -1,0 +1,38 @@
+Options -Indexes
+DirectoryIndex index.html index.php
+
+ErrorDocument 404 "/ovi/error/404.php"
+ErrorDocument 403 "/ovi/error/404.php"
+# 
+# associate .js with "text/javascript" type (if not present in mime.conf)
+# 
+AddType text/javascript .js
+
+## EXPIRES CACHING ##
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/jpg "access plus 8 days"
+ExpiresByType image/jpeg "access plus 8 days"
+ExpiresByType image/gif "access plus 8 days"
+ExpiresByType image/png "access plus 8 days"
+ExpiresByType text/css "access plus 8 days"
+ExpiresByType application/pdf "access plus 8 days"
+ExpiresByType text/x-javascript "access plus 8 days"
+ExpiresByType application/x-shockwave-flash "access plus 8 days"
+ExpiresByType image/x-icon "access plus 8 days"
+ExpiresDefault "access plus 8 days"
+</IfModule>
+## EXPIRES CACHING ##
+
+<IfModule mod_deflate.c>
+        <IfModule mod_filter.c>
+                # these are known to be safe with MSIE 6
+                AddOutputFilterByType DEFLATE text/html text/plain text/xml
+
+                # everything else may cause problems with MSIE 6
+                AddOutputFilterByType DEFLATE text/css
+                AddOutputFilterByType DEFLATE application/x-javascript application/javascript application/ecmascript
+                AddOutputFilterByType DEFLATE application/rss+xml
+                AddOutputFilterByType DEFLATE application/xml
+        </IfModule>
+</IfModule>

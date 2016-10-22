@@ -1,0 +1,9 @@
+<div id="ovijudge_announcement">
+	<div class="ovijudge_announcement_content">
+		'+h.data+'
+		<div class="ovijudge_announce_close_div">
+			<span class="ovijudge_announce_close"><a href="javascript:void(0);">'+lang[28]+'</a></span>
+		</div>
+	</div>
+	<div class="ovijudge_announcement_tip_pos"></div>
+</div>

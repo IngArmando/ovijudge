@@ -1,0 +1,23 @@
+		.row_campos_detalles div,.row_campos_detalles input,.row_campos_detalles select{
+		padding:0px;
+		margin:0px;
+		border-radius:0px;
+		height:20px;
+		}
+		.boton_menos,.boton_mas{
+		height:20px;
+		padding:2px 3px 2px 3px;
+		}
+		#th_button_nuevo{
+		text-align:center;
+		width:80px;
+		}
+		.td_botones button{
+			float:left;
+		}
+		.div_botones_listar{
+
+		}
+		.div_botones_listar button{
+		margin-left:3px;
+		}

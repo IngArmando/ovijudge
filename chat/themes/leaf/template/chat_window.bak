@@ -1,0 +1,65 @@
+<div class="ovijudge_tabtitle">
+	<div class="ovijudge_user_status"></div>
+	<div class="ovijudge_tab_name">'+c+longname+i+'</div>
+	<div class="ovijudge_closebox"></div>
+	<div class="ovijudge_more_button">
+		<a href="javascript:void(0)" class="ovijudge_more_anchor" id="ovijudge_more_'+b+'"></a>
+		<div class="ovijudge_more_wrapper">
+			<div id="ovijudge_more_popout_'+b+'" class="ovijudge_more_popout">
+				<div id="ovijudge_file_transfer_'+b+'" class="ovijudge_video_chat">
+					'+lang[66]+'
+				</div>
+				<div class="ovijudge_video_chat ovijudge_chat_popout">
+					'+lang[60]+'
+				</div>
+				<div id="ovijudge_clear_'+b+'" class="ovijudge_video_chat">
+					'+lang[24]+'
+				</div>
+				<hr class="ovijudge_options_divider" style="margin-top:5px" />
+				<div id="ovijudge_block_'+b+'" class="ovijudge_video_chat">
+					'+lang[84]+'
+				</div>
+				<div id="ovijudge_report_'+b+'" class="ovijudge_video_chat">
+						'+lang[167]+'
+				</div>
+				<i class="ovijudge_more_tip"></i>
+			</div>
+		</div>
+	</div>
+	<div id="ovijudge_video_chat_'+b+'" class="ovijudge_video_icon ovijudge_video_unavailable"></div>
+</div>
+<div class="ovijudge_tabcontent">
+	<div id="ovijudge_file_upload_div_'+b+'" class="ovijudge_file_upload" style="display: none;">
+		<div class="ovijudge_file_upload_wrapper">
+			<div style="float: right;">
+				<div class="ovijudge_ui_button">
+					<input id="ovijudge_file_upload_'+b+'" name="file_upload" type="file" />
+					<div class="ovijudge_upload_text">'+lang[86]+'</div>
+				</div>
+			</div>
+			<div class="ovijudge_upload_info_text" style="text-align: left; float: left; position: relative; width:150px">
+				'+lang[87]+'<a href="javascript:void(0);" id="ovijudge_file_cancel_'+b+'">'+lang[67]+'</a>
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+	</div>
+	<div id="ovijudge_chatbox_message_flyout_'+b+'" class="ovijudge_message_box">
+		<div class="ovijudge_message_box_wrapper">
+			<div>
+				<span class="ovijudge_message_text">'+lang[68]+'</span>
+			</div>
+		</div>
+	</div>
+	<div class="ovijudge_tabcontenttext" id="ovijudge_tabcontenttext_'+b+'"></div>
+	<div class="ovijudge_tabcontentinput">
+		<textarea class="ovijudge_textarea"></textarea>
+		<div class="ovijudge_smiley_button">
+			<div class="ovijudge_more_wrapper ovijudge_smiley_popout">
+				<div class="ovijudge_more_popout">
+					<div class="ovijudge_smiley_box"></div>
+					<i class="ovijudge_more_tip"></i>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

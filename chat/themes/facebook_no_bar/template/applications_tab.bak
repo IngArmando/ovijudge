@@ -1,0 +1,4 @@
+<div class="ovijudge_inner_button">
+	<img class="ovijudge_tray_icon" src="'+c_ac_path+'themes/'+u_theme+'/images/icons/tray_ovijudge.png" />
+	<div class="ovijudge_tray_name">'+lang[16]+'</div>
+</div>

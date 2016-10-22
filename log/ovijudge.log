@@ -1,0 +1,274 @@
+21-10-2016 09:59:40 V-18671986 Servidor iniciado.
+21-10-2016 09:59:40 V-18671986 Compilando php -l archivos/envio_entrenamiento/842.php
+21-10-2016 09:59:40 V-18671986 Ejecutando php archivos/envio_entrenamiento/842.php para la entrada :
+1
+21-10-2016 09:59:40 V-18671986 Verificando tiempo limite
+21-10-2016 09:59:40 V-18671986 COMPARANDO MEMORIA: 18116
+>15000
+21-10-2016 09:59:40 V-18671986 DATOS ARROJADOS AL VERIFICAR TIEMPO LIMITE:CMD: timeout 1 /usr/bin/time  -f 'memo%M' php archivos/envio_entrenamiento/842.php
+ Resultado ejecucion: Resource id #17
+ Codigo: 0
+  output: Hola mundo!
+ memoria: memo18116
+ con explode: 18116
+
+ error con explode:  
+21-10-2016 09:59:40 V-18671986 Tiempo limite verificado 
+21-10-2016 09:59:40 V-18671986 Comparando resultados: 
+21-10-2016 09:59:40 V-18671986 Sentencia: 
+22-10-2016 10:38:07 V-18671986 Servidor iniciado.
+22-10-2016 10:38:07 V-18671986 Compilando php -l archivos/envio_entrenamiento/843.php
+22-10-2016 10:38:07 V-18671986 Ejecutando php archivos/envio_entrenamiento/843.php para la entrada :
+1
+22-10-2016 10:38:07 V-18671986 Verificando tiempo limite
+22-10-2016 10:38:07 V-18671986 COMPARANDO MEMORIA: 18016
+>30000
+22-10-2016 10:38:07 V-18671986 DATOS ARROJADOS AL VERIFICAR TIEMPO LIMITE:CMD: timeout 1 /usr/bin/time  -f 'memo%M' php archivos/envio_entrenamiento/843.php
+ Resultado ejecucion: Resource id #21
+ Codigo: 0
+  output: Hola mundo!
+ memoria: memo18016
+ con explode: 18016
+
+ error con explode:  
+22-10-2016 10:38:07 V-18671986 Tiempo limite verificado 
+22-10-2016 10:38:07 V-18671986 Resultado: Hola mundo!
+22-10-2016 10:38:07 V-18671986 listo
+22-10-2016 10:38:07 V-18671986 Comparando resultados: 
+Hola mundo! == Hola mundo!
+ En hexadecimal: 
+486F6C61206D756E646F21 == 486F6C61206D756E646F21
+22-10-2016 10:38:07 V-18671986 Sentencia: CORRECTO
+22-10-2016 10:40:52 V-18671986 Servidor iniciado.
+22-10-2016 10:40:52 V-18671986 Compilando gcc archivos/envio_entrenamiento/844.c -o archivos/envio_entrenamiento/844 -Wall
+22-10-2016 10:40:53 V-18671986 Ejecutando archivos/envio_entrenamiento/./844 para la entrada :
+1
+22-10-2016 10:40:53 V-18671986 Verificando tiempo limite
+22-10-2016 10:40:53 V-18671986 COMPARANDO MEMORIA: 1228
+>30000
+22-10-2016 10:40:53 V-18671986 DATOS ARROJADOS AL VERIFICAR TIEMPO LIMITE:CMD: timeout 1 /usr/bin/time  -f 'memo%M' archivos/envio_entrenamiento/./844
+ Resultado ejecucion: Resource id #17
+ Codigo: 0
+  output: Hola mundo!
+ memoria: memo1228
+ con explode: 1228
+
+ error con explode:  
+22-10-2016 10:40:53 V-18671986 Tiempo limite verificado 
+22-10-2016 10:40:53 V-18671986 Resultado: Hola mundo!
+22-10-2016 10:40:53 V-18671986 listo
+22-10-2016 10:40:53 V-18671986 Comparando resultados: 
+Hola mundo! == Hola mundo!
+ En hexadecimal: 
+486F6C61206D756E646F21 == 486F6C61206D756E646F21
+22-10-2016 10:40:53 V-18671986 Sentencia: CORRECTO
+22-10-2016 10:53:40 V-18671986 Servidor iniciado.
+22-10-2016 10:53:40 V-18671986 Compilando gcc archivos/envio_entrenamiento/845.c -o archivos/envio_entrenamiento/845 -Wall
+22-10-2016 10:53:41 V-18671986 Sentencia: ERROR DE COMPILACIÓN 
+22-10-2016 11:01:26 V-18671986 Servidor iniciado.
+22-10-2016 11:01:26 V-18671986 Compilando g++ archivos/envio_entrenamiento/846.cpp -o archivos/envio_entrenamiento/846 -Wall
+22-10-2016 11:01:27 V-18671986 Sentencia: ERROR DE COMPILACIÓN 
+22-10-2016 11:01:34 V-18671986 Servidor iniciado.
+22-10-2016 11:01:34 V-18671986 Compilando g++ archivos/envio_entrenamiento/847.cpp -o archivos/envio_entrenamiento/847 -Wall
+22-10-2016 11:01:34 V-18671986 Sentencia: ERROR DE COMPILACIÓN 
+22-10-2016 11:01:41 V-18671986 Servidor iniciado.
+22-10-2016 11:01:41 V-18671986 Compilando g++ archivos/envio_entrenamiento/848.cpp -o archivos/envio_entrenamiento/848 -Wall
+22-10-2016 11:01:41 V-18671986 Sentencia: ERROR DE COMPILACIÓN 
+22-10-2016 11:01:48 V-18671986 Servidor iniciado.
+22-10-2016 11:01:48 V-18671986 Compilando g++ archivos/envio_entrenamiento/849.cpp -o archivos/envio_entrenamiento/849 -Wall
+22-10-2016 11:01:48 V-18671986 Sentencia: ERROR DE COMPILACIÓN 
+22-10-2016 11:04:42 V-18671986 Servidor iniciado.
+22-10-2016 11:04:42 V-18671986 Compilando g++ archivos/envio_entrenamiento/850.cpp -o archivos/envio_entrenamiento/850 -Wall
+22-10-2016 11:04:42 V-18671986 Ejecutando archivos/envio_entrenamiento/./850 para la entrada :
+1
+22-10-2016 11:04:42 V-18671986 Verificando tiempo limite
+22-10-2016 11:04:42 V-18671986 COMPARANDO MEMORIA: 2536
+>30000
+22-10-2016 11:04:42 V-18671986 DATOS ARROJADOS AL VERIFICAR TIEMPO LIMITE:CMD: timeout 1 /usr/bin/time  -f 'memo%M' archivos/envio_entrenamiento/./850
+ Resultado ejecucion: Resource id #17
+ Codigo: 0
+  output: Hola mundo!
+ memoria: memo2536
+ con explode: 2536
+
+ error con explode:  
+22-10-2016 11:04:42 V-18671986 Tiempo limite verificado 
+22-10-2016 11:04:42 V-18671986 Resultado: Hola mundo!
+22-10-2016 11:04:42 V-18671986 listo
+22-10-2016 11:04:42 V-18671986 Comparando resultados: 
+Hola mundo! == Hola mundo!
+ En hexadecimal: 
+486F6C61206D756E646F21 == 486F6C61206D756E646F21
+22-10-2016 11:04:42 V-18671986 Sentencia: CORRECTO
+22-10-2016 11:05:11 V-18671986 Servidor iniciado.
+22-10-2016 11:05:11 V-18671986 Compilando javac archivos/envio_entrenamiento/envio_851.java
+22-10-2016 11:05:14 V-18671986 Ejecutando java -cp archivos/envio_entrenamiento/ envio_851 para la entrada :
+1
+22-10-2016 11:05:14 V-18671986 Verificando tiempo limite
+22-10-2016 11:05:14 V-18671986 COMPARANDO MEMORIA: 21144
+>30000
+22-10-2016 11:05:14 V-18671986 DATOS ARROJADOS AL VERIFICAR TIEMPO LIMITE:CMD: timeout 1 /usr/bin/time  -f 'memo%M' java -cp archivos/envio_entrenamiento/ envio_851
+ Resultado ejecucion: Resource id #18
+ Codigo: 0
+  output: Hola mundo!
+
+ memoria: memo21144
+ con explode: 21144
+
+ error con explode:  
+22-10-2016 11:05:14 V-18671986 Tiempo limite verificado 
+22-10-2016 11:05:14 V-18671986 Resultado: Hola mundo!
+
+22-10-2016 11:05:14 V-18671986 listo
+22-10-2016 11:05:14 V-18671986 Comparando resultados: 
+Hola mundo! == Hola mundo!
+ En hexadecimal: 
+486F6C61206D756E646F21 == 486F6C61206D756E646F21
+22-10-2016 11:05:15 V-18671986 Sentencia: CORRECTO
+22-10-2016 11:07:17 V-18671986 Servidor iniciado.
+22-10-2016 11:07:17 V-18671986 Ejecutando python3 archivos/envio_entrenamiento/852.py3 para la entrada :
+1
+22-10-2016 11:07:17 V-18671986 Verificando tiempo limite
+22-10-2016 11:07:17 V-18671986 COMPARANDO MEMORIA: 7580
+>30000
+22-10-2016 11:07:17 V-18671986 DATOS ARROJADOS AL VERIFICAR TIEMPO LIMITE:CMD: timeout 1 /usr/bin/time  -f 'memo%M' python3 archivos/envio_entrenamiento/852.py3
+ Resultado ejecucion: Resource id #12
+ Codigo: 0
+  output: Hola mundo!
+
+ memoria: memo7580
+ con explode: 7580
+
+ error con explode:  
+22-10-2016 11:07:17 V-18671986 Tiempo limite verificado 
+22-10-2016 11:07:17 V-18671986 Resultado: Hola mundo!
+
+22-10-2016 11:07:17 V-18671986 listo
+22-10-2016 11:07:17 V-18671986 Comparando resultados: 
+Hola mundo! == Hola mundo!
+ En hexadecimal: 
+486F6C61206D756E646F21 == 486F6C61206D756E646F21
+22-10-2016 11:07:17 V-18671986 Sentencia: CORRECTO
+22-10-2016 11:07:23 V-18671986 Servidor iniciado.
+22-10-2016 11:07:23 V-18671986 Compilando php -l archivos/envio_entrenamiento/853.php
+22-10-2016 11:07:23 V-18671986 Ejecutando php archivos/envio_entrenamiento/853.php para la entrada :
+1
+22-10-2016 11:07:23 V-18671986 Verificando tiempo limite
+22-10-2016 11:07:23 V-18671986 COMPARANDO MEMORIA: 17904
+>30000
+22-10-2016 11:07:23 V-18671986 DATOS ARROJADOS AL VERIFICAR TIEMPO LIMITE:CMD: timeout 1 /usr/bin/time  -f 'memo%M' php archivos/envio_entrenamiento/853.php
+ Resultado ejecucion: Resource id #17
+ Codigo: 0
+  output: print("Hola mundo!");
+ memoria: memo17904
+ con explode: 17904
+
+ error con explode:  
+22-10-2016 11:07:23 V-18671986 Tiempo limite verificado 
+22-10-2016 11:07:23 V-18671986 Resultado: print("Hola mundo!");
+22-10-2016 11:07:23 V-18671986 listo
+22-10-2016 11:07:23 V-18671986 Comparando resultados: 
+print("Hola mundo!"); == Hola mundo!
+ En hexadecimal: 
+7072696E742822486F6C61206D756E646F2122293B == 486F6C61206D756E646F21
+22-10-2016 11:07:23 V-18671986 Sentencia: RESPUESTA INCORRECTA 
+22-10-2016 11:07:38 V-18671986 Servidor iniciado.
+22-10-2016 11:07:38 V-18671986 Compilando php -l archivos/envio_entrenamiento/854.php
+22-10-2016 11:07:39 V-18671986 Ejecutando php archivos/envio_entrenamiento/854.php para la entrada :
+1
+22-10-2016 11:07:39 V-18671986 Verificando tiempo limite
+22-10-2016 11:07:39 V-18671986 COMPARANDO MEMORIA: 17944
+>30000
+22-10-2016 11:07:39 V-18671986 DATOS ARROJADOS AL VERIFICAR TIEMPO LIMITE:CMD: timeout 1 /usr/bin/time  -f 'memo%M' php archivos/envio_entrenamiento/854.php
+ Resultado ejecucion: Resource id #17
+ Codigo: 0
+  output: Hola mundo!
+ memoria: memo17944
+ con explode: 17944
+
+ error con explode:  
+22-10-2016 11:07:39 V-18671986 Tiempo limite verificado 
+22-10-2016 11:07:39 V-18671986 Resultado: Hola mundo!
+22-10-2016 11:07:39 V-18671986 listo
+22-10-2016 11:07:39 V-18671986 Comparando resultados: 
+Hola mundo! == Hola mundo!
+ En hexadecimal: 
+486F6C61206D756E646F21 == 486F6C61206D756E646F21
+22-10-2016 11:07:39 V-18671986 Sentencia: CORRECTO
+22-10-2016 12:14:39 V-18671986 Servidor iniciado.
+22-10-2016 12:14:39 V-18671986 Compilando php -l archivos/envio/35.php
+22-10-2016 12:14:39 V-18671986 Ejecutando php archivos/envio/35.php para la entrada :
+1
+22-10-2016 12:14:39 V-18671986 Verificando tiempo limite
+22-10-2016 12:14:39 V-18671986 COMPARANDO MEMORIA: 17840
+>30000
+22-10-2016 12:14:39 V-18671986 DATOS ARROJADOS AL VERIFICAR TIEMPO LIMITE:CMD: timeout 1 /usr/bin/time  -f 'memo%M' php archivos/envio/35.php
+ Resultado ejecucion: Resource id #16
+ Codigo: 1
+  output: Could not open input file: archivos/envio/35.php
+
+ memoria: Command exited with non-zero status 1
+memo17840
+ con explode: 17840
+
+ error con explode: Command exited with non-zero status 1
+ 
+22-10-2016 12:14:39 V-18671986 Tiempo limite verificado 
+22-10-2016 12:14:39 V-18671986 Resultado: Could not open input file: archivos/envio/35.php
+
+22-10-2016 12:14:39 V-18671986 listo
+22-10-2016 12:14:39 V-18671986 Comparando resultados: 
+Could not open input file: archivos/envio/35.php == Hola mundo!
+ En hexadecimal: 
+436F756C64206E6F74206F70656E20696E7075742066696C653A206172636869766F732F656E76696F2F33352E706870 == 486F6C61206D756E646F21
+22-10-2016 12:14:39 V-18671986 Sentencia: RESPUESTA INCORRECTA 
+22-10-2016 12:14:56 V-18671986 Servidor iniciado.
+22-10-2016 12:14:56 V-18671986 Compilando php -l archivos/envio/36.php
+22-10-2016 12:14:56 V-18671986 Ejecutando php archivos/envio/36.php para la entrada :
+1
+22-10-2016 12:14:56 V-18671986 Verificando tiempo limite
+22-10-2016 12:14:56 V-18671986 COMPARANDO MEMORIA: 17876
+>30000
+22-10-2016 12:14:56 V-18671986 DATOS ARROJADOS AL VERIFICAR TIEMPO LIMITE:CMD: timeout 1 /usr/bin/time  -f 'memo%M' php archivos/envio/36.php
+ Resultado ejecucion: Resource id #16
+ Codigo: 1
+  output: Could not open input file: archivos/envio/36.php
+
+ memoria: Command exited with non-zero status 1
+memo17876
+ con explode: 17876
+
+ error con explode: Command exited with non-zero status 1
+ 
+22-10-2016 12:14:56 V-18671986 Tiempo limite verificado 
+22-10-2016 12:14:56 V-18671986 Resultado: Could not open input file: archivos/envio/36.php
+
+22-10-2016 12:14:56 V-18671986 listo
+22-10-2016 12:14:56 V-18671986 Comparando resultados: 
+Could not open input file: archivos/envio/36.php == Hola mundo!
+ En hexadecimal: 
+436F756C64206E6F74206F70656E20696E7075742066696C653A206172636869766F732F656E76696F2F33362E706870 == 486F6C61206D756E646F21
+22-10-2016 12:14:56 V-18671986 Sentencia: RESPUESTA INCORRECTA 
+22-10-2016 12:16:57 V-18671986 Servidor iniciado.
+22-10-2016 12:16:57 V-18671986 Compilando php -l archivos/envio/37.php
+22-10-2016 12:16:57 V-18671986 Ejecutando php archivos/envio/37.php para la entrada :
+1
+22-10-2016 12:16:57 V-18671986 Verificando tiempo limite
+22-10-2016 12:16:57 V-18671986 COMPARANDO MEMORIA: 17988
+>30000
+22-10-2016 12:16:57 V-18671986 DATOS ARROJADOS AL VERIFICAR TIEMPO LIMITE:CMD: timeout 1 /usr/bin/time  -f 'memo%M' php archivos/envio/37.php
+ Resultado ejecucion: Resource id #17
+ Codigo: 0
+  output: Hola mundo!
+ memoria: memo17988
+ con explode: 17988
+
+ error con explode:  
+22-10-2016 12:16:57 V-18671986 Tiempo limite verificado 
+22-10-2016 12:16:57 V-18671986 Resultado: Hola mundo!
+22-10-2016 12:16:57 V-18671986 listo
+22-10-2016 12:16:57 V-18671986 Comparando resultados: 
+Hola mundo! == Hola mundo!
+ En hexadecimal: 
+486F6C61206D756E646F21 == 486F6C61206D756E646F21
+22-10-2016 12:16:57 V-18671986 Sentencia: CORRECTO

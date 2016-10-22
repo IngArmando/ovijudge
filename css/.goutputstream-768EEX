@@ -1,0 +1,11 @@
+*e{
+	border:1px solid #000;
+}
+#logo{
+padding-top:2px;
+}
+body{
+	background-image:url(images/fondo.jpg);
+	background-attachment: fixed;
+	background-color:#dfddd4;
+}

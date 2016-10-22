@@ -1,0 +1,359 @@
+<?php
+	require_once("modelo/class_db.php");
+	require_once("modelo/class_problema.php");
+	require_once("modelo/class_envio_entrenamiento.php");
+	require_once("modelo/class_caso_de_prueba.php");
+	require_once("modelo/class_juzgar_entrenamiento.php");
+	include_once("vista/participar_entrenamiento.php");
+	include_once("modelo/class_concurso.php");
+	require_once("modelo/class_envio.php");
+	error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." Servidor iniciado.\n", 3, "/var/log/ovijudge/ovijudge.log");
+	$msj_esperando_envio=true;
+	global $concurso;
+	if($entrenamiento){	
+		if($envio_entrenamiento->consulta_para_juez()==1){
+			$concurso=false;
+			$msj_esperando_envio=true;
+			$row=$envio_entrenamiento->row();
+			$cod_envio		=$row['cod_envio_entrenamiento'];
+			$comando		=$row['comando'];
+			$codigo_fuente	=$row['codigo_fuente'];
+			$cod_problema	=$row['cod_problema'];
+			$archivo		=$cod_envio.".".$comando;
+			$url			='archivos/envio_entrenamiento/';
+			$fp 			=fopen($url.$archivo, 'w');
+			fputs($fp,$codigo_fuente);
+			fclose($fp);
+			$input_output=input_output($cod_problema);
+			$resultado=proceso_de_lenguaje($comando,$url,$archivo,$cod_envio,$input_output,$codigo_fuente);
+			error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." Sentencia: ".$resultado."\n", 3, "/var/log/ovijudge/ovijudge.log");
+		}
+	}elseif($concurso){
+		if($participar->consulta_para_juez()==1){
+			$concurso=true;
+			$msj_esperando_envio=true;
+			$row=$participar->row();
+			$cod_envio=$row['cod_envio'];
+			$comando=$row['comando'];
+			$codigo_fuente=$row['codigo_fuente'];
+			$cod_problema=$row['cod_problema'];
+			$url='archivos/envio/';
+			$archivo=$cod_envio.".".$comando;
+
+			$fp = fopen($url.$archivo, 'w');
+			fputs($fp,$codigo_fuente);
+			fclose($fp);
+			$input_output=input_output($cod_problema);
+			$resultado=proceso_de_lenguaje($comando,$url,$archivo,$cod_envio,$input_output,$codigo_fuente);
+		
+			error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." Sentencia: ".$resultado."\n", 3, "/var/log/ovijudge/ovijudge.log");	
+		}
+	}else{
+		$msj_esperando_envio=msj_esperando_envio($msj_esperando_envio);
+	}
+
+//echo "resultado: ".$resultado." resultado al cerrar compilacion: ".$return_value."resultado al cerrar ejecucion: ".$return_value_ejecucion." error compilacion: ".$error." error ejecucion: ".$error_ejecucion."\n";
+closelog();
+function msj_esperando_envio($msj_esperando_envio){
+		if($msj_esperando_envio){
+			error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." Esperando nuevos envios...\n", 3, "/var/log/ovijudge/ovijudge.log");
+		}
+		return false;
+}
+function descriptor(){
+	$descriptor = array(
+   0 => array("pipe", "r"),
+   1 => array("pipe", "w"),
+   2 => array("pipe", "w")
+	);
+	return 	$descriptor;
+}
+function compilar($comando,$cod_envio){
+	error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." Compilando ".$comando."\n", 3, "/var/log/ovijudge/ovijudge.log");
+	$descriptor = descriptor();
+	$resultado_ejecucion 	= proc_open($comando, $descriptor, $pipes);
+	$error=stream_get_contents($pipes[2]);
+	if($error){
+		return msj_sentencia(3,$error,$cod_envio);
+	}
+	proc_close($resultado_ejecucion);
+	return $pipes;
+}
+function ejecutar_con_tiempo($comando,$input,$cod_envio, $timeout=5) {
+	error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." Ejecutando ".$comando." para la entrada :\n", 3, "/var/log/ovijudge/ovijudge.log");
+  $descriptor = descriptor();
+  $timeout += time();
+  	foreach($input as $input){
+		error_log($input."\n", 3, "/var/log/ovijudge/ovijudge.log");
+		  $resultado_ejecucion = proc_open($comando, $descriptor, $pipes);
+			$timeleft = $timeout - time();
+			$read = array($pipes[1]);
+			fwrite($pipes[0], $input);
+			fclose($pipes[0]);
+			@stream_select($read, $write = NULL, $exeptions = NULL, $timeleft, 0);
+		  
+		 
+		  if ($timeleft <= 0) {
+			proc_terminate($resultado_ejecucion);
+			return msj_sentencia(6,'',$cod_envio);
+		  } else {
+
+					if($error){
+						return msj_sentencia(5,$error,$cod_envio);
+					}
+					if($pipes[1]){
+						$result=stream_get_contents($pipes[1]);
+						$row['resultado'][]=$result;
+						error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." Resultado: ".$result."\n", 3, "/var/log/ovijudge/ovijudge.log");
+					}
+					proc_close($resultado_ejecucion);
+					
+		  }
+	  }
+	  return $row;
+}
+function ejecutar($comando,$input,$cod_envio){
+
+	error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." Ejecutando ".$comando." para la entrada :\n", 3, "/var/log/ovijudge/ovijudge.log");
+	$descriptor = descriptor();
+	
+	foreach($input as $input){
+		error_log($input."\n", 3, "/var/log/ovijudge/ovijudge.log");
+		error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." Verificando tiempo limite\n", 3, "/var/log/ovijudge/ovijudge.log");
+		$salida=verificar_limite_de_tiempo($comando, '', 5);
+		error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." Tiempo limite verificado ".$salida."\n", 3, "/var/log/ovijudge/ovijudge.log");
+		if(is_array($salida)){
+			error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." Tiempo limite EXCEDIDO\n", 3, "/var/log/ovijudge/ovijudge.log");
+			return msj_sentencia(6,$error,$cod_envio);
+		}
+		$resultado_ejecucion 	= proc_open($comando, $descriptor, $pipes);
+		$status = proc_get_status($resultado_ejecucion); // see what it's doing
+
+		fwrite($pipes[0], $input);
+		fclose($pipes[0]);
+		$error=stream_get_contents($pipes[2]);
+		error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." listo\n", 3, "/var/log/ovijudge/ovijudge.log");
+		if($error){
+			return msj_sentencia(5,$error,$cod_envio);
+		}
+		if($pipes[1]){
+			$result=stream_get_contents($pipes[1]);
+			$row['resultado'][]=$result;
+			error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." Resultado: ".$result."\n", 3, "/var/log/ovijudge/ovijudge.log");
+			}
+		proc_close($resultado_ejecucion);
+		
+	}
+
+	
+	return $row;
+}
+
+function resultado($row,$output,$cod_envio){
+	error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." Comparando resultados: \n", 3, "/var/log/ovijudge/ovijudge.log");
+	if(isset($row['resultado'])){
+		foreach($row['resultado'] as $i=>$resultado){
+			error_log(trim($resultado)." == ".trim($output[$i])."\n", 3, "/var/log/ovijudge/ovijudge.log");
+			if(trim($resultado)==trim($output[$i])){
+				$caso[$i]=1;
+			}else{
+				return msj_sentencia(2,($i+1),$cod_envio);
+			}
+		}
+	}
+	if($caso[0]==1){
+		return msj_sentencia(1,null,$cod_envio);
+	}
+}
+
+function input_output($cod_problema){
+
+	
+	$caso_de_prueba = new caso_de_prueba;
+	$caso_de_prueba->set_cod_problema($cod_problema);
+	$caso_de_prueba->consulta_por('cod_problema');
+	while($row = $caso_de_prueba->row()){
+		$salida['input'][]=$row['input'];
+		$salida['output'][]=$row['output'];
+	}
+	return $salida;
+}
+
+function msj_sentencia($cod,$detalles,$cod_envio){
+	global $concurso;
+	
+	switch($cod){
+			case 1: {
+				$msj="CORRECTO";
+			}
+			break;
+			case 2: {
+				$msj="RESPUESTA INCORRECTA ";
+			}
+			break;
+			case 3: {
+				$msj="ERROR DE COMPILACIÓN ";
+			}
+			break;
+			case 5: {
+				$msj="ERROR DE EJECUCION ";
+			}
+			break;
+			case 6: {
+				$msj="TIEMPO MAXIMO EXCEDIDO ";
+			}
+			break;
+			default:{
+				$msj="ERROR DESCONOCIDO ";
+				$cod=4;	
+			}
+			
+	}
+	
+	if($concurso){		
+		$envio = new envio;
+		$envio->set_cod_envio($cod_envio);
+	}else{
+		$envio= new envio_entrenamiento;
+		$envio->set_cod_envio_entrenamiento($cod_envio);
+	}
+	
+	$envio->set_resultado_compilacion($detalles);
+	$envio->set_cod_msj_salida($cod);
+	$envio->modificar();
+			
+	return $msj;
+	
+}
+
+function proceso_de_lenguaje($comando,$url,$archivo,$cod_envio,$input_output,$codigo_fuente){
+	
+		switch($comando){
+			case 'c': {
+				$comando="gcc ".$url.$archivo." -o ".$url.$cod_envio." -Wall";
+				$row= compilar($comando,$cod_envio);
+				if(!is_array($row)){
+					$resultado=$row;
+					break;
+				}
+				$comando=$url."./".$cod_envio;
+				$row= ejecutar($comando,$input_output['input'],$cod_envio);
+				$resultado= resultado($row,$input_output['output'],$cod_envio);
+			
+			}
+			break;
+			case 'cpp': {
+				$comando="g++ ".$url.$archivo." -o ".$url.$cod_envio." -Wall";
+				$row= compilar($comando,$cod_envio);
+				if(!is_array($row)){
+					$resultado=$row;
+					break;
+				}
+				$comando=$url."./".$cod_envio;
+				$row= ejecutar($comando,$input_output['input'],$cod_envio);
+				$resultado= resultado($row,$input_output['output'],$cod_envio);
+				
+			}
+			break;
+			case 'php': {
+				$comando="php -l ".$url.$archivo;
+				$row= compilar($comando,$cod_envio);
+				if(!is_array($row)){
+					$resultado=$row;
+					break;
+				}
+				$comando="php ".$url.$archivo;
+				$row= ejecutar($comando,$input_output['input'],$cod_envio);
+				$resultado= resultado($row,$input_output['output'],$cod_envio);
+				
+			}
+			break;
+			case 'js': {
+				$comando="node ".$url.$archivo;
+				$row= ejecutar($comando,$input_output['input'],$cod_envio);
+				$resultado= resultado($row,$input_output['output'],$cod_envio);
+				
+			}
+			break;
+			case 'py3': {
+				$comando="python3 ".$url.$archivo;
+				
+				$row= ejecutar($comando,$input_output['input'],$cod_envio);
+				if(!is_array($row)){
+					$resultado=$row;
+					break;
+				}
+				$resultado= resultado($row,$input_output['output'],$cod_envio);
+			}
+			break;
+			case 'java': {
+				$archivo="envio_".$archivo;
+				$fp = fopen($url.$archivo, 'w');
+				$codigo_fuente=preg_replace("/public class (.*) {/", "public class envio_".$cod_envio." {", $codigo_fuente,1);
+				
+				fputs($fp,$codigo_fuente);
+				fclose($fp);
+				$comando="javac ".$url.$archivo;
+				$row= compilar($comando,$cod_envio);
+				if(!is_array($row)){
+					$resultado=$row;
+					break;
+				}
+				$comando="java -cp ".$url." envio_".$cod_envio;
+				$row= ejecutar($comando,$input_output['input'],$cod_envio);
+				$resultado= resultado($row,$input_output['output'],$cod_envio);
+				
+				
+			}
+			break;
+		}	
+		
+		return $resultado;
+	
+	}
+	
+
+function verificar_limite_de_tiempo($cmd, $stdin='', $timeout)
+         {$start=time();
+          $stdout='';
+          $stderr='';
+          //file_put_contents('debug.txt', time().':cmd:'.$cmd."\n", FILE_APPEND);
+          //file_put_contents('debug.txt', time().':stdin:'.$stdin."\n", FILE_APPEND);
+
+          $process=proc_open($cmd, [['pipe', 'r'], ['pipe', 'w'], ['pipe', 'w']], $pipes);
+          if (!is_resource($process))
+             {return array('return'=>'1', 'stdout'=>$stdout, 'stderr'=>$stderr);
+             }
+          $status=proc_get_status($process);
+          posix_setpgid($status['pid'], $status['pid']);    //seperate pgid(process group id) from parent's pgid
+
+          stream_set_blocking($pipes[0], 0);
+          stream_set_blocking($pipes[1], 0);
+          stream_set_blocking($pipes[2], 0);
+          fwrite($pipes[0], $stdin);
+          fclose($pipes[0]);
+
+          while (1)
+                {$stdout.=stream_get_contents($pipes[1]);
+                 $stderr.=stream_get_contents($pipes[2]);
+
+                 if (time()-$start>$timeout)
+                    {//proc_terminate($process, 9);    //only terminate subprocess, won't terminate sub-subprocess
+                     posix_kill(-$status['pid'], 9);    //sends SIGKILL to all processes inside group(negative means GPID, all subprocesses share the top process group, except nested my_timeout_exec)
+                     //file_put_contents('debug.txt', time().":kill group {$status['pid']}\n", FILE_APPEND);
+                     return array('return'=>'1', 'stdout'=>$stdout, 'stderr'=>$stderr);
+                    }
+
+                 $status=proc_get_status($process);
+                 //file_put_contents('debug.txt', time().':status:'.var_export($status, true)."\n";
+                 if (!$status['running'])
+                    {fclose($pipes[1]);
+                     fclose($pipes[2]);
+                     proc_close($process);
+                     return $status['exitcode'];
+                    }
+
+                 usleep(100000);
+                }
+         }
+?>

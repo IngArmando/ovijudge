@@ -1,0 +1,16 @@
+<div class="ovijudge_moderation_title">
+	<div class="ovijudge_tab_name">'+lang[166]+'</div>
+</div>
+<div class="ovijudge_reports_subtitle"></div>
+<div class="ovijudge_clearfix"></div>
+<div class="ovijudge_moderation_content">
+	<div id="ovijudge_moderation_flyout" class="ovijudge_message_box">
+		<div class="ovijudge_message_box_wrapper">
+			<div>
+				<span class="ovijudge_message_text">'+lang[182]+'</span>
+			</div>
+		</div>
+	</div>
+	<div class="ovijudge_moderation_full_content">
+	</div>
+</div>

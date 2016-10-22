@@ -1,0 +1,10 @@
+sh: 1: ./120: not found
+sh: 1: ./120: not found
+/media/webmasterscity/todo/www/ovijudge/domserver/www/archivos/envio_entrenamiento/120.cpp: In function ‘int main()’:
+/media/webmasterscity/todo/www/ovijudge/domserver/www/archivos/envio_entrenamiento/120.cpp:6:6: error: ‘da’ was not declared in this scope
+ cin>>da;
+      ^
+/media/webmasterscity/todo/www/ovijudge/domserver/www/archivos/envio_entrenamiento/120.cpp:5:5: warning: unused variable ‘a’ [-Wunused-variable]
+ int a;
+     ^
+sh: 1: ./120: not found

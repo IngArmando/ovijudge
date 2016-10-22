@@ -1,0 +1,19 @@
+*e{
+	border:1px solid #000;
+}
+#logo{
+padding-top:2px;
+}
+body{
+	background-color:#F8F8F8;
+}
+.container{
+background:#FFF;
+}
+.navbar {
+border-bottom:0px;
+}
+#distancia{
+background:#FFF;
+height:50px;
+}

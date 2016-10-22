@@ -1,0 +1,19 @@
+<div id="ovijudge_report_history">
+	<div id="ovijudge_report_history_content"></div>
+</div>
+<div id="ovijudge_report_info">
+	<div class="ovijudge_report_info_about"></div>
+	<div class="ovijudge_report_info_from"></div>
+	<div class="ovijudge_report_info_warnings"></div>
+	<div class="ovijudge_report_info_time"></div>
+</div>
+<div id="ovijudge_report_list">
+	<div id="ovijudge_report_line" class="ovijudge_group_container">
+		<span class="ovijudge_group_text">'+lang[181]+'</span>
+		<div class="ovijudge_group_line_container">
+			<span class="ovijudge_group_line"></span>
+		</div>
+	</div>
+	<div id="ovijudge_list_reports"></div>
+</div>
+<div class="ovijudge_clearfix"></div>

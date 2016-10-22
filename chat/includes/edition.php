@@ -1,0 +1,1 @@
+<?php define('chat_EDITION', 'premium'); ?>

@@ -1,0 +1,41 @@
+<div id="ovijudge_chatroom_chat">
+	<div id="ovijudge_chatroom_chat_content"></div>
+</div>
+<div id="ovijudge_chatroom_room_list">
+	<div id="ovijudge_chatroom_line_admins" class="ovijudge_group_container">
+		<span class="ovijudge_group_text">'+lang[148]+'</span>
+		<div class="ovijudge_group_line_container">
+			<span class="ovijudge_group_line"></span>
+		</div>
+	</div>
+	<div id="ovijudge_chatroom_list_admins"></div>
+	<div id="ovijudge_chatroom_line_mods" class="ovijudge_group_container">
+		<span class="ovijudge_group_text">'+lang[149]+'</span>
+		<div class="ovijudge_group_line_container">
+			<span class="ovijudge_group_line"></span>
+		</div>
+	</div>
+	<div id="ovijudge_chatroom_list_mods"></div>
+	<div id="ovijudge_chatroom_line_users" class="ovijudge_group_container">
+		<span class="ovijudge_group_text">'+lang[147]+'</span>
+		<div class="ovijudge_group_line_container">
+			<span class="ovijudge_group_line"></span>
+		</div>
+	</div>
+	<div id="ovijudge_chatroom_list_users"></div>
+</div>
+<div class="ovijudge_clearfix"></div>
+<div id="ovijudge_chatroom_message">
+	<div class="ovijudge_chatroom_message_area">
+		<textarea class="ovijudge_chatroom_message_input" maxlength="'+c_max_chatroom_msg+'"></textarea>
+		<div class="ovijudge_smiley_button">
+			<div class="ovijudge_more_wrapper ovijudge_smiley_popout">
+				<div class="ovijudge_more_popout">
+					<div class="ovijudge_smiley_box"></div>
+					<i class="ovijudge_more_tip"></i>
+				</div>
+			</div>
+		</div>
+		<div id="ovijudge_upload_button"><div id="ovijudge_chatroom_uploader"> </div></div>
+	</div>
+</div>

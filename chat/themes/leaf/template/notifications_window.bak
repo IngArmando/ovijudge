@@ -1,0 +1,11 @@
+<div class="ovijudge_userstabtitle">
+	<div class="ovijudge_tab_name">'+lang[0]+'</div>
+	<div class="ovijudge_see_all_button">
+		<a href="javascript:void(0);" class="ovijudge_see_all_link ovijudge_more_anchor"></a>
+	</div>
+</div>
+<div class="ovijudge_tabcontent ovijudge_optionstyle">
+	<div id="ovijudge_notifications_content">
+		<div id="ovijudge_no_new_notifications">'+lang[9]+'</div>
+	</div>
+</div>

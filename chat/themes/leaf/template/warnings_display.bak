@@ -1,0 +1,10 @@
+<div id="ovijudge_warnings">
+	<div class="ovijudge_warnings_content">
+		<div class="ovijudge_warning_message"><div class="ovijudge_warning_icon"></div>'+lang[199]+'</div>
+		<div class="ovijudge_warning_reason">'+h.data+'</div>
+		<div class="ovijudge_warnings_close_div">
+			<span class="ovijudge_warnings_close"><a href="javascript:void(0);">'+lang[198]+'</a></span>
+		</div>
+	</div>
+	<div class="ovijudge_warnings_tip_pos"></div>
+</div>

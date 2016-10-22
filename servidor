@@ -1,0 +1,340 @@
+<?php
+	require_once("modelo/class_db.php");
+	require_once("modelo/class_problema.php");
+	require_once("modelo/class_envio_entrenamiento.php");
+	require_once("modelo/class_caso_de_prueba.php");
+	require_once("modelo/class_juzgar_entrenamiento.php");
+	include_once("vista/participar_entrenamiento.php");
+	include_once("modelo/class_concurso.php");
+	require_once("modelo/class_envio.php");
+	$GLOBALS['dir_log']="log/ovijudge.log";
+	error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." Servidor iniciado.\n", 3, $GLOBALS['dir_log']);
+	$msj_esperando_envio=true;
+	global $concurso;
+	if($entrenamiento){	
+		if($envio_entrenamiento->consulta_para_juez()==1){
+			$concurso=false;
+			$msj_esperando_envio=true;
+			$row=$envio_entrenamiento->row();
+			$cod_envio		=$row['cod_envio_entrenamiento'];
+			$comando		=$row['comando'];
+			$codigo_fuente	=$row['codigo_fuente'];
+			$limite_tiempo	=$row['limite_tiempo'];
+			$limite_memoria	=$row['limite_memoria'];
+			$cod_problema	=$row['cod_problema'];
+			$archivo		=$cod_envio.".".$comando;
+			$url			='archivos/envio_entrenamiento/';
+			$fp 			=fopen($url.$archivo, 'w');
+			fputs($fp,$codigo_fuente);
+			fclose($fp);
+			$input_output=input_output($cod_problema);
+			$resultado=proceso_de_lenguaje($comando,$url,$archivo,$cod_envio,$input_output,$codigo_fuente,$limite_memoria,$limite_tiempo);
+			error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." Sentencia: ".$resultado."\n", 3, $GLOBALS['dir_log']);
+		}
+	}elseif($concurso){
+		if($participar->consulta_para_juez()==1){
+			$concurso=true;
+			$msj_esperando_envio=true;
+			$row=$participar->row();
+			$cod_envio=$row['cod_envio'];
+			$comando=$row['comando'];
+			$codigo_fuente=$row['codigo_fuente'];
+			$limite_tiempo	=$row['limite_tiempo'];
+			$limite_memoria	=$row['limite_memoria'];
+			$cod_problema=$row['cod_problema'];
+			$url='archivos/envio/';
+			$archivo=$cod_envio.".".$comando;
+
+			$fp = fopen($url.$archivo, 'w');
+			fputs($fp,$codigo_fuente);
+			fclose($fp);
+			$input_output=input_output($cod_problema);
+			$resultado=proceso_de_lenguaje($comando,$url,$archivo,$cod_envio,$input_output,$codigo_fuente,$limite_memoria,$limite_tiempo);
+		
+			error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." Sentencia: ".$resultado."\n", 3, $GLOBALS['dir_log']);	
+		}
+	}else{
+		$msj_esperando_envio=msj_esperando_envio($msj_esperando_envio);
+	}
+
+//echo "resultado: ".$resultado." resultado al cerrar compilacion: ".$return_value."resultado al cerrar ejecucion: ".$return_value_ejecucion." error compilacion: ".$error." error ejecucion: ".$error_ejecucion."\n";
+closelog();
+function msj_esperando_envio($msj_esperando_envio){
+		if($msj_esperando_envio){
+			error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." Esperando nuevos envios...\n", 3, $GLOBALS['dir_log']);
+		}
+		return false;
+}
+function descriptor(){
+	$descriptor = array(
+   0 => array("pipe", "r"),
+   1 => array("pipe", "w"),
+   2 => array("pipe", "w")
+	);
+	return 	$descriptor;
+}
+function compilar($comando,$cod_envio){
+	error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." Compilando ".$comando."\n", 3, $GLOBALS['dir_log']);
+	$descriptor = descriptor();
+	$resultado_ejecucion 	= proc_open($comando, $descriptor, $pipes);
+	$error=stream_get_contents($pipes[2]);
+	if($error){
+		return msj_sentencia(3,$error,$cod_envio);
+	}
+	proc_close($resultado_ejecucion);
+	return $pipes;
+}
+
+function ejecutar($comando,$input,$cod_envio,$limite_memoria,$limite_tiempo){
+
+	error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." Ejecutando ".$comando." para la entrada :\n", 3, $GLOBALS['dir_log']);
+	$descriptor = descriptor();
+	
+	foreach($input as $input){
+		error_log($input."\n", 3, $GLOBALS['dir_log']);
+		error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." Verificando tiempo limite\n", 3, $GLOBALS['dir_log']);
+		$salida=verificar_limite_de_tiempo_memoria($comando,$input,$limite_memoria,$limite_tiempo);
+		error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." Tiempo limite verificado \n", 3, $GLOBALS['dir_log']);
+		
+		switch($salida['codigo']){
+			case 124: {
+				error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." Tiempo limite EXCEDIDO\n", 3, $GLOBALS['dir_log']);
+				return msj_sentencia(6,$error,$cod_envio);				
+				}break;
+			case 999:{
+				$error=$salida['error'];
+				return msj_sentencia(5,$error,$cod_envio);
+				}break;
+			case 777:{
+				
+					return msj_sentencia(7,$error,$cod_envio);			
+				}break;
+			default:{
+				$result=$salida['output'];
+				$row['resultado'][]=$result;
+				error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." Resultado: ".$result."\n", 3, $GLOBALS['dir_log']);				
+				}
+			}
+		
+		error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." listo\n", 3, $GLOBALS['dir_log']);
+
+		
+	}
+
+	
+	return $row;
+}
+
+function resultado($row,$output,$cod_envio){
+	error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." Comparando resultados: \n", 3, $GLOBALS['dir_log']);
+	if(isset($row['resultado'])){
+		foreach($row['resultado'] as $i=>$resultado){
+			$eliminado_hex_cr = str_replace("\r", '', trim($output[$i]));
+			error_log(trim($resultado)." == ".trim($output[$i])."\n En hexadecimal: \n".strToHex(trim($resultado))." == ".strToHex($eliminado_hex_cr)."\n", 3, $GLOBALS['dir_log']);
+			if(trim($resultado)==trim($eliminado_hex_cr)){
+				$caso[$i]=1;
+			}else{
+				return msj_sentencia(2,($i+1),$cod_envio);
+			}
+		}
+	}
+	if($caso[0]==1){
+		return msj_sentencia(1,null,$cod_envio);
+	}
+}
+
+function input_output($cod_problema){
+
+	
+	$caso_de_prueba = new caso_de_prueba;
+	$caso_de_prueba->set_cod_problema($cod_problema);
+	$caso_de_prueba->consulta_por('cod_problema');
+	while($row = $caso_de_prueba->row()){
+		$salida['input'][]=$row['input'];
+		$salida['output'][]=$row['output'];
+	}
+	return $salida;
+}
+
+function msj_sentencia($cod,$detalles,$cod_envio){
+	global $concurso;
+	
+	switch($cod){
+			case 1: {
+				$msj="CORRECTO";
+			}
+			break;
+			case 2: {
+				$msj="RESPUESTA INCORRECTA ";
+			}
+			break;
+			case 3: {
+				$msj="ERROR DE COMPILACIÓN ";
+			}
+			break;
+			case 5: {
+				$msj="ERROR DE EJECUCION ";
+			}
+			break;
+			case 6: {
+				$msj="TIEMPO MAXIMO EXCEDIDO ";
+			}
+			break;
+			case 7: {
+				$msj="MEMORIA EXCEDIDA ";
+			}
+			break;
+			default:{
+				$msj="ERROR DESCONOCIDO ";
+				$cod=4;	
+			}
+			
+	}
+	
+	if($concurso){		
+		$envio = new envio;
+		$envio->set_cod_envio($cod_envio);
+	}else{
+		$envio= new envio_entrenamiento;
+		$envio->set_cod_envio_entrenamiento($cod_envio);
+	}
+	
+	$envio->set_resultado_compilacion($detalles);
+	$envio->set_cod_msj_salida($cod);
+	$envio->modificar();
+			
+	return $msj;
+	
+}
+
+function proceso_de_lenguaje($comando,$url,$archivo,$cod_envio,$input_output,$codigo_fuente,$limite_memoria,$limite_tiempo){
+	
+		switch($comando){
+			case 'c': {
+				$comando="gcc ".$url.$archivo." -o ".$url.$cod_envio." -Wall";
+				$row= compilar($comando,$cod_envio);
+				if(!is_array($row)){
+					$resultado=$row;
+					break;
+				}
+				$comando=$url."./".$cod_envio;
+				$row= ejecutar($comando,$input_output['input'],$cod_envio,$limite_memoria,$limite_tiempo);
+				$resultado= resultado($row,$input_output['output'],$cod_envio);
+			
+			}
+			break;
+			case 'cpp': {
+				$comando="g++ ".$url.$archivo." -o ".$url.$cod_envio." -Wall";
+				$row= compilar($comando,$cod_envio);
+				if(!is_array($row)){
+					$resultado=$row;
+					break;
+				}
+				$comando=$url."./".$cod_envio;
+				$row= ejecutar($comando,$input_output['input'],$cod_envio,$limite_memoria,$limite_tiempo);
+				$resultado= resultado($row,$input_output['output'],$cod_envio);
+				
+			}
+			break;
+			case 'php': {
+				$comando="php -l ".$url.$archivo;
+				$row= compilar($comando,$cod_envio);
+				if(!is_array($row)){
+					$resultado=$row;
+					break;
+				}
+				$comando="php ".$url.$archivo;
+				$row= ejecutar($comando,$input_output['input'],$cod_envio,$limite_memoria,$limite_tiempo);
+				$resultado= resultado($row,$input_output['output'],$cod_envio);
+				
+			}
+			break;
+			case 'js': {
+				$comando="node ".$url.$archivo;
+				$row= ejecutar($comando,$input_output['input'],$cod_envio,$limite_memoria,$limite_tiempo);
+				$resultado= resultado($row,$input_output['output'],$cod_envio);
+				
+			}
+			break;
+			case 'py3': {
+				$comando="python3 ".$url.$archivo;
+				
+				$row= ejecutar($comando,$input_output['input'],$cod_envio,$limite_memoria,$limite_tiempo);
+				if(!is_array($row)){
+					$resultado=$row;
+					break;
+				}
+				$resultado= resultado($row,$input_output['output'],$cod_envio);
+			}
+			break;
+			case 'java': {
+				$archivo="envio_".$archivo;
+				$fp = fopen($url.$archivo, 'w');
+				$codigo_fuente=preg_replace("/public class (.*) {/", "public class envio_".$cod_envio." {", $codigo_fuente,1);
+				
+				fputs($fp,$codigo_fuente);
+				fclose($fp);
+				$comando="javac ".$url.$archivo;
+				$row= compilar($comando,$cod_envio);
+				if(!is_array($row)){
+					$resultado=$row;
+					break;
+				}
+				$comando="java -cp ".$url." envio_".$cod_envio;
+				$row= ejecutar($comando,$input_output['input'],$cod_envio,$limite_memoria,$limite_tiempo);
+				$resultado= resultado($row,$input_output['output'],$cod_envio);
+				
+				
+			}
+			break;
+		}	
+		
+		return $resultado;
+	
+	}
+	
+function verificar_limite_de_tiempo_memoria($cmd,$input,$limite_memoria,$limite_tiempo){
+	$descriptor = descriptor();
+	$cmd="timeout ".$limite_tiempo." /usr/bin/time  -f 'memo%M' ".$cmd;
+	//exit($cmd);
+	$resultado_ejecucion 	= proc_open($cmd, $descriptor, $pipes);
+	
+	//$pipes[1] resultado
+	//$pipes[2] error
+	//$pipes[0] noc
+	fwrite($pipes[0], $input);
+	fclose($pipes[0]);
+	//$a=stream_get_contents($pipes[0]);
+	
+	$b=stream_get_contents($pipes[1]);
+	$c=stream_get_contents($pipes[2]);
+	$code=proc_close($resultado_ejecucion);
+	$arreglo['codigo']=$code;
+	$arreglo['output']=$b;
+	$me=explode("memo",$c);
+	$arreglo['memoria']=$me[1];
+	$arreglo['error']=$me[0];
+	$datos="CMD: ".$cmd."\n Resultado ejecucion: ".$resultado_ejecucion."\n Codigo: ".$code."\n  output: ".$b."\n memoria: ".$c." con explode: ".$arreglo['memoria']."\n error con explode: ".$arreglo['error'];
+	error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." COMPARANDO MEMORIA: ".$arreglo['memoria'].">".$limite_memoria."\n", 3, $GLOBALS['dir_log']);
+	error_log(date("d-m-Y h:i:s")." ".$_SESSION['cedula']." DATOS ARROJADOS AL VERIFICAR TIEMPO LIMITE:".$datos." \n", 3, $GLOBALS['dir_log']);
+	if(intval($arreglo['memoria'])>intval($limite_memoria)){
+		$arreglo['codigo']=777;
+	}
+	
+	if(intval($arreglo['error'])!=0)
+		$arreglo['codigo']=999;
+		
+		
+	return $arreglo;
+}
+
+function strToHex($string){
+    $hex = '';
+    for ($i=0; $i<strlen($string); $i++){
+        $ord = ord($string[$i]);
+        $hexCode = dechex($ord);
+        $hex .= substr('0'.$hexCode, -2);
+    }
+    return strToUpper($hex);
+}
+?>

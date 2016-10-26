@@ -101,20 +101,23 @@ $html.='
 	$(function() {
 		$("#tiempo_restante").countdown(tiempo_real_restante)
 			.on("update.countdown", function(event) {
-			 var format = "Tiempo restante: %H:%M:%S";
+			 var format = "%H Hrs. %M Min. %S Seg.";
 			 if(event.offset.days > 0) {
-			 format = "%-d dia%!d " + format;
+			 format = "%-d Dia%!d %H Hrs. %M Min. %S Seg.";
+			
 			 }
 			 if(event.offset.weeks > 0) {
-			  format = "%-w semana%!w " + format;
+			 
+			  format = format+" %-w semana%!w ";
 			 }
+			 format = "Quedan: "+format;
 			 $(this).html(event.strftime(format));
 			})
 			.on("finish.countdown", function(event) {
 			$(this).html(\'CONCURSO FINALIZADO!\');
 			location.href="index.php?vista=participar&evento=resultado&cod_concurso='.$cod_concurso.'";
 			
-			.parent().addClass("disabled");
+			//.parent().addClass("disabled");
 		});	
 	});	
 	</script>

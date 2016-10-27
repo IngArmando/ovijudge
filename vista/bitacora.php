@@ -1,7 +1,9 @@
 <?php
 	require_once("modelo/class_bitacora.php");
 	class vista_bitacora extends bitacora{
-		
+		public $tipo_bitacora="todo";
+		public $titulo="Bitacora transaccional";
+		public $vista_regresar="bitacora";
 		public function buscar(){
 	 $salida.='
 			<script type="text/javascript" src="js/js_bitacora.js" ></script>
@@ -12,7 +14,7 @@
 						<div class="col-xs-4 col-md-4" style="text-align:left">	
 						</div>
 						<div class="col-xs-3 col-md-4" style="text-align:center">		
-							<span style="font-size:18px">Bitacora</span>	
+							<span style="font-size:18px">'.$this->titulo.'</span>	
 						</div>
 						<div class="col-xs-5 col-md-4"  style="text-align:right">			
 						</div>
@@ -50,7 +52,15 @@
 	public function reporte_html_general($fecha_inicio,$fecha_fin){
 		global $lib_data_table;
 			$lib_data_table=true;
-	$this->listar_avanzado($fecha_inicio,$fecha_fin);
+	switch($this->tipo_bitacora){
+		case "acceso":{
+			$this->listar_avanzado_acceso($fecha_inicio,$fecha_fin);
+			}break;
+		case "todo":{
+			$this->listar_avanzado($fecha_inicio,$fecha_fin);
+			}break;
+		}
+	
 	$salida.='
 			<script> var sub_titulo_pdf="Reporte de Bitacoras";</script>
 			<script type="text/javascript" src="libreria/js_listado_general.js"></script>
@@ -61,10 +71,10 @@
 
 		</div>
 		<div class="col-xs-3 col-md-8" style="text-align:center">		
-			<span style="font-size:18px">Bitacoras</span>	
+			<span style="font-size:18px">'.$this->titulo.'</span>	
 		</div>
 		<div class="col-xs-5 col-md-2"  style="text-align:right">			
-			'.btn_regresar('bitacora').'	
+			'.btn_regresar($this->vista_regresar).'	
 		</div>
 	</div>
 </div>			
@@ -92,7 +102,7 @@
 				<input type="hidden" name="cod_bitacora" value="'.$row['cod_bitacora'].'">
 		</form>
 	</td>
-	<td>'.$row['evento'].'</td><td>'.$row['descripcion'].'</td><td>'.$row['fecha_hora_timestamp'].'</td><td>'.$row['cedula'].' '.$row['usuario_nombre'].' '.$row['usuario_apellido'].'</td>
+	<td>'.$row['evento'].'</td><td>'.htmlentities($row['descripcion']).'</td><td>'.$row['fecha_hora_timestamp'].'</td><td>'.$row['cedula'].' '.$row['usuario_nombre'].' '.$row['usuario_apellido'].'</td>
 	</tr>';
 	}
 	

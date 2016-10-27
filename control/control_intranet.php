@@ -35,37 +35,27 @@ switch($evento){
 		
 		$row_usuario=$usuario->row();
 		$usuario->set_cod_usuario($row_usuario['cod_usuario']);
-		$_SESSION['login']=true;
-		$_SESSION['cod_usuario']=$row_usuario['cod_usuario'];
-		$_SESSION['cedula']=$row_usuario['cedula'];
+		$_SESSION['login']			=true;
+		$_SESSION['cod_usuario']	=$row_usuario['cod_usuario'];
+		$_SESSION['cedula']			=$row_usuario['cedula'];
 		$_SESSION['cod_tipo_usuario']=$row_usuario['cod_tipo_usuario'];
-		$_SESSION['nombre_usuario']=$row_usuario['nombre'];
+		$_SESSION['nombre_usuario']	=$row_usuario['nombre'];
 		$_SESSION['apellido_usuario']=$row_usuario['apellido'];
 		$_SESSION['nombre_tipo_usuario']=$row_usuario['nombre_tipo_usuario'];
-		$_SESSION['ultima_visita']=date("d-m-Y",strtotime($row_usuario['ultima_actividad']));
+		$_SESSION['ultima_visita']	=date("d-m-Y",strtotime($row_usuario['ultima_actividad']));
 		$usuario->actualizar_entrada();
 		generar_privilegios($_SESSION['cod_tipo_usuario']);
 		$usuario->set_cod_tipo_usuario($_SESSION['cod_tipo_usuario']);
 		$_SESSION['intentos']=0;
+		$usuario->registrar_bitacora("Entrada","El usuario a entrado al sistema correctamente. con la ip: ".getUserIP());
 		}
 		$_SESSION['texto_btn_session']="Cerrar Sesión";
 	}
 	break;
 	case "salir":{
-		if($_SESSION['tipo_session']){
-			$usuario = new usuario;
-				$usuario->set_cod_tipo_usuario($_SESSION['cod_tipo_usuario']);
-				if($usuario->vistas_senasem()==0 || $usuario->vistas_siregen()==0){
-					salir_sistema();
-				}else{
-					$_SESSION['tipo_session']="";
-					$_SESSION['texto_btn_session']="Cerrar Sesión";
-				}
-			
-		}else{
-			salir_sistema();
-		}	
-		
+		$usuario = new usuario;
+		$usuario->registrar_bitacora("Salida","El usuario a salido del sistema correctamente. con la ip: ".getUserIP());
+		salir_sistema();
 	}
 	break;
 }

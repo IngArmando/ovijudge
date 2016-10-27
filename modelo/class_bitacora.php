@@ -57,6 +57,20 @@ class bitacora extends db{
 			}	
 		return parent::ejecutar("SELECT bitacora.*,date_format(bitacora.fecha_hora_timestamp,'%d-%m-%Y  %h:%i:%s %p') as fecha_hora_timestamp, persona.nombre as usuario_nombre, persona.apellido as usuario_apellido FROM bitacora INNER JOIN usuario ON bitacora.cod_usuario=usuario.cod_usuario INNER JOIN persona ON persona.cedula=usuario.cedula ".$where." ".$fecha.$estatus);
 	}
+	public function listar_avanzado_acceso($fecha_inicio,$fecha_fin){	
+		$fecha_inicio=date("Y-m-d",strtotime($fecha_inicio));
+		$fecha_fin=date("Y-m-d",strtotime($fecha_fin));
+		if($this->cod_usuario!="Todos"){
+			$estatus="AND bitacora.cod_usuario='$this->cod_usuario'";
+			$where="AND";
+		
+			}
+		if($fecha_inicio and $fecha_fin){
+			$fecha="(bitacora.fecha_hora_timestamp BETWEEN  '".$fecha_inicio." 00:00:01' AND '".$fecha_fin." 23:59:59') ";
+			$where="AND";
+			}	
+		return parent::ejecutar("SELECT bitacora.*,date_format(bitacora.fecha_hora_timestamp,'%d-%m-%Y  %h:%i:%s %p') as fecha_hora_timestamp, persona.nombre as usuario_nombre, persona.apellido as usuario_apellido FROM bitacora INNER JOIN usuario ON bitacora.cod_usuario=usuario.cod_usuario INNER JOIN persona ON persona.cedula=usuario.cedula WHERE (bitacora.evento='Entrada' or bitacora.evento='Salida') ".$where." ".$fecha.$estatus);
+	}
 	public function eliminar(){		
 		return parent::ejecutar("DELETE FROM bitacora WHERE cod_bitacora='$this->cod_bitacora'");
 	}

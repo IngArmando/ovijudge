@@ -3,9 +3,9 @@
 class db {
 //CREAMOS LOS ATRIBUTOS DE MANERA PRIVADA
 	public $dns="localhost",
-			$usuario="",
-			$password="",
-			$db="",
+			$usuario="webmasterscity",
+			$password="-Ds0082ds",
+			$db="ovi",
 			$res,
 			$mysqli;
 			

@@ -1,9 +1,9 @@
 <?php 
 
-	define('DB_SERVER',''); 
-	define('DB_USERNAME',''); 
-	define('DB_PASSWORD',''); 
-	define('DB_NAME','');	
+	define('DB_SERVER','localhost'); 
+	define('DB_USERNAME','webmasterscity'); 
+	define('DB_PASSWORD','-Ds0082ds'); 
+	define('DB_NAME','ovi');	
 		
 	/**
 	 * The table prefix can be left blank. A quick example of what you should input here:

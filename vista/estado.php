@@ -81,8 +81,8 @@ class vista_estado extends campo_estado{
 					$botonera=mostrar_btn($_SESSION['cod_tipo_usuario'],$vista,$parametro);
 					$ancho=strlen($botonera)/5.4;
 		$salida.='
-		<tr>
-		<td class="td_botones">
+		<tr >
+		<td class="td_botones" >
 		
 			<form method="post"  class="div_botones_listar" style=" margin:0px; display:inline-block; width:'.$ancho.'px"> <span style=" float:left; margin-right:1px;">'.$i.' </span>
 					'.$botonera.'
@@ -136,6 +136,7 @@ class vista_estado extends campo_estado{
 							'.$this->cod_pais().'
 							'.$this->nombre().'
 					</div>
+
 
 					<div class="row"><br>
 						<div class="col-md-3"></div>

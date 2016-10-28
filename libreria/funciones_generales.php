@@ -334,12 +334,12 @@ function mostrar_btn($cod_tipo_usuario,$vista,$parametro){
 				}
 				if($row_privilegio['desactivar'] || $cod_usuario_reg==$_SESSION['cod_usuario']){
 					if($parametro['estatus']=='1')
-						$html.='
-						<button type="submit" name="evento" value="desactivar" title="Activo" class="btn btn-info btn-xs" ><span class="glyphicon glyphicon-ok"></span></button>';
+						$html.=' <button type="submit" name="evento" value="desactivar" title="Desactivar" class="btn btn-warning btn-xs" ><span class="glyphicon glyphicon-ban-circle"></span></button>
+						
+						';
 					else
-						$html.='
-						<button type="submit" name="evento" value="activar" title="Inactivo" class="btn btn-warning btn-xs" ><span class="glyphicon glyphicon-ban-circle"></span></button>';
-					
+						$html.=' <button type="submit" name="evento" value="activar" title="Activar" class="btn btn-info btn-xs btn_status_desactivo" ><span class="glyphicon glyphicon-ok"></span></button>';
+
 				}
 				if($row_privilegio['eliminar']){
 					$html.='

@@ -120,3 +120,4 @@
 
 	
 			});
+$(function() {	$(".btn_status_desactivo").parent().parent().parent().addClass("danger");});

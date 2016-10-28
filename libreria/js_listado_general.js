@@ -2,6 +2,7 @@
 		return confirm("Esta seguro de eliminar este registro?");
 	}
 			$(function() {
+					
 				var orientar='portrait';
 			   var table = $('#data_table').DataTable( {
 				  autoClose: true,
@@ -120,3 +121,4 @@
 
 	
 			});
+$(function() {	$(".btn_status_desactivo").parent().parent().parent().addClass("danger");});

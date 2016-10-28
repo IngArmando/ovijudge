@@ -349,7 +349,7 @@ function mostrar_btn($cod_tipo_usuario,$vista,$parametro){
 			break;
 			case 'consulta_nuevo':{
 				if($row_privilegio['registrar']){
-					$html.='<a title="Agregar nuevo registro" class="btn btn-success btn-sm" href="'.$_SERVER['REQUEST_URI'].'&evento=formulario_registrar">Agregar nuevo</a>';
+					$html.='<a title="Agregar un nuevo registro" class="btn btn-success btn-sm" href="'.$_SERVER['REQUEST_URI'].'&evento=formulario_registrar"> Agregar mas <span class="glyphicon glyphicon-plus"></span></a>';
 				}	
 			}
 			break;

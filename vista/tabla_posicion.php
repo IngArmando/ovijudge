@@ -5,7 +5,7 @@ function tabla_posicion(){
 
 			var sub_titulo_pdf="Tabla de posiciones";
 			</script>
-			<script type="text/javascript" src="libreria/js_listado_general.js"></script>
+			
 <div class="panel panel-default">
 			<div class="panel-heading" style="text-align:center">
 				<div class="row">

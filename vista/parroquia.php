@@ -49,7 +49,7 @@ class vista_parroquia extends campo_parroquia{
 		$salida.='
 			<script> var sub_titulo_pdf="Reporte de Parroquias";</script>
 			<script type="text/javascript" src="libreria/js_listado_general.js"></script>
-		<script type="text/javascript" src="js/js_parroquia.js" ></script>
+		
 			<div class="panel panel-default">
 				<div class="panel-heading" style="text-align:center">
 					<div class="row">

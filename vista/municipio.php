@@ -49,7 +49,7 @@ class vista_municipio extends campo_municipio{
 		$salida.='
 			<script> var sub_titulo_pdf="Reporte de Municipios";</script>
 			<script type="text/javascript" src="libreria/js_listado_general.js"></script>
-		<script type="text/javascript" src="js/js_municipio.js" ></script>
+	
 			<div class="panel panel-default">
 				<div class="panel-heading" style="text-align:center">
 					<div class="row">

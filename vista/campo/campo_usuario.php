@@ -1,6 +1,46 @@
 <?php
 require_once("modelo/class_usuario.php");
 class campo_usuario extends usuario{
+	
+		public function cod_institucion(){
+			$html='
+				
+					<div class="col-md-3">
+						<label>
+							Institución <span style="color:red" title="Campo obligatorio">(*)</span>
+						</label> 
+							'.$this->combo_cod_institucion().'
+					</div>
+
+			';
+			return $html;
+		}
+		
+	public function combo_cod_institucion(){
+		include_once("modelo/class_institucion.php");
+		$institucion = new institucion;
+		$institucion->listar();
+		$salida.= '<div class="input-group">
+
+		';
+		$salida.= '<select required  style="z-index:1"  id="cod_institucion" class="form-control" name="cod_institucion" >'; 
+		$salida.= '<option value="">Elige</option>';
+		while($row_institucion = $institucion->row()){
+			$salida.= '<option value="'.$row_institucion["cod_institucion"].'"';	
+			if($row_institucion["cod_institucion"]== $this->cod_institucion) $salida.= " selected ";									
+			$salida.= '>'.$row_institucion["nombre"]."</option>";
+		}
+		$salida.= '</select>';
+		$salida.= '<span class="input-group-btn">
+		<a href="?vista=institucion&evento=formulario_registrar" target="_blank" class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"> </span> Agregar</a>
+		
+
+		</span>
+		
+		</div>';
+		return $salida;
+	}
+		
 		
 		public function cod_usuario(){
 			return '<input type="hidden" name="cod_usuario" value="'.$this->cod_usuario.'" />';	

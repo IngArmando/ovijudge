@@ -31,6 +31,7 @@
 	$cod_parroquia=$_POST['cod_parroquia'];
 	
 	$cod_usuario=$_POST['cod_usuario'];
+	$cod_institucion=$_POST['cod_institucion'];
 	
 	$usuario_admin->set_cedula($cedula);
 	$usuario_admin->set_nombre($nombre);
@@ -54,6 +55,7 @@
 	$usuario_admin->set_ip_actual();
 	
 	$usuario_admin->set_cod_tipo_usuario($cod_tipo_usuario);		 
+	$usuario_admin->set_cod_institucion($cod_institucion);
 	
 	
 	//INSTANCIAMOS EL OBJETO Y APLICAMOS LOS METODOS SET

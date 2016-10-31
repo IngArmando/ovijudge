@@ -39,10 +39,10 @@ class vista_concurso extends campo_concurso{
 			<th>Nombre</th>
 			<th>Nombre corto</th>
 			<th>Inicio</th>
-			<th>Congelación</th>
-			<th>Finalización</th>
-			<th>Descongelar</th>
-			<th>Desactivar</th>
+			<th>Congelar resultados</th>
+			<th>Finalizar concurso</th>
+			<th>Mostrar resultados</th>
+			
 			</tr>
 			</thead>
 			<tbody>
@@ -72,7 +72,7 @@ class vista_concurso extends campo_concurso{
 	<td>'.$row['tiempo_conjelacion'].' VEN</td>
 	<td>'.$row['tiempo_final'].' VEN</td>
 	<td>'.$row['tiempo_desconjelar'].' VEN</td>
-	<td>'.$row['tiempo_inactivo'].' VEN</td>
+	
 	</tr>';
 	}
 	
@@ -167,12 +167,6 @@ class vista_concurso extends campo_concurso{
 			<div class="col-md-3"></div>
 				<div class="col-md-3">
 					<label>
-						Tiempo inactivo: 
-					</label>
-					'.$this->tiempo_inactivo.'
-				</div>
-				<div class="col-md-3">
-					<label>
 						Estatus: 
 					</label>
 					'.($this->estatus ? 'Activo' : 'Inactivo').'
@@ -252,7 +246,7 @@ class vista_concurso extends campo_concurso{
 					<div class="col-md-3"></div>
 					
 					'.$this->tiempo_desconjelar().'
-					'.$this->tiempo_inactivo().'
+					
 		</div>
 
 	

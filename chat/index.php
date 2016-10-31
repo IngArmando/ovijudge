@@ -1,15 +1,6 @@
 <?php
 
-	/*
-	|| #################################################################### ||
-	|| #                             chat                            # ||
-	|| # ---------------------------------------------------------------- # ||
-	|| #    Copyright ©2010-2012 ArrowSuites LLC. All Rights Reserved.    # ||
-	|| # This file may not be redistributed in whole or significant part. # ||
-	|| # ---------------- chat IS NOT FREE SOFTWARE ---------------- # ||
-	|| #   http://www.chat.com | http://www.chat.com/license/   # ||
-	|| #################################################################### ||
-	*/
+
 
 	// Redirect to install if the installation hasn't been completed or admin if it has
 	if (!file_exists("includes" . DIRECTORY_SEPARATOR . "config.php")) 

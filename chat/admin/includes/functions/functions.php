@@ -1,16 +1,5 @@
 <?php
 
-	/*
-	|| #################################################################### ||
-	|| #                             chat                            # ||
-	|| # ---------------------------------------------------------------- # ||
-	|| #    Copyright ©2010-2012 ArrowSuites LLC. All Rights Reserved.    # ||
-	|| # This file may not be redistributed in whole or significant part. # ||
-	|| # ---------------- chat IS NOT FREE SOFTWARE ---------------- # ||
-	|| #   http://www.chat.com | http://www.chat.com/license/   # ||
-	|| #################################################################### ||
-	*/
-	
 	/**
 	 * Removes an element from an array
 	 *

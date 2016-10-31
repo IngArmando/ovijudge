@@ -1,18 +1,7 @@
 <?php
 
-	/*
-	|| #################################################################### ||
-	|| #                             chat                            # ||
-	|| # ---------------------------------------------------------------- # ||
-	|| #    Copyright ©2010-2012 ArrowSuites LLC. All Rights Reserved.    # ||
-	|| # This file may not be redistributed in whole or significant part. # ||
-	|| # ---------------- chat IS NOT FREE SOFTWARE ---------------- # ||
-	|| #   http://www.chat.com | http://www.chat.com/license/   # ||
-	|| #################################################################### ||
-	*/
-
-	// ########################## INCLUDE BACK-END ###########################
 	require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "includes/admin_init.php");
+	
 	
 	// Clear Chat History
 	if ($do == "delete_history") 

@@ -43,9 +43,9 @@
 							<thead>
 							<tr>
 							<th width="80px">
-							Nro
+							Nro.
 							</th>
-							<th style="text-align:center">Codigo</th>
+							<th style="text-align:center">Código</th>
 							<th style="text-align:center">Resuelto en</th>
 							<th style="text-align:center">Nombre</th>
 							<th style="text-align:center">Enunciado</th>
@@ -153,7 +153,7 @@
 						
 					</div>
 					<div class="row">
-						<div class="col-md-12" style="text-align:right; font-size:12px">1) Cada envio incorrecto sera penalizado con 20 minutos de tiempo. 2) El tiempo es importante en caso de empates.</div>
+						<div class="col-md-12" style="text-align:right; font-size:12px">1) Cada envío incorrecto sera penalizado con 20 minutos de tiempo. 2) El tiempo es importante en caso de empates.</div>
 					</div>
 <div class="row">
 				<div class="col-md-3">
@@ -168,14 +168,14 @@
 							<td style="background:#FE8494; text-align:center; border: 1px solid #CCC" >Problema no solucionado</td>
 						</tr>
 						<tr>
-							<td style=" text-align:center; border: 1px solid #CCC" >Sin envios</td>
+							<td style=" text-align:center; border: 1px solid #CCC" >Sin envíos</td>
 						</tr>
 					</table>
 				</div>
 					
 						<div class="col-md-3" style="text-align:center">
 							<table style="text-align:center">
-								<tr><td><h5>Congelación de resultados</h5></td></tr>
+								<tr><td><h5>Congelar resultados</h5></td></tr>
 								<tr><td>'.tiempo_restante($concurso->cod_concurso,$concurso->tiempo_inicio,$concurso->tiempo_conjelacion,'congelacion').'</td></tr>
 							</table>
 						</div>
@@ -187,7 +187,7 @@
 						</div>
 						<div class="col-md-3" style="text-align:center" >
 							<table style="text-align:center">
-								<tr><td><h5>Descongelar resultados</h5></td></tr>
+								<tr><td><h5>Mostrar resultados</h5></td></tr>
 								<tr><td>'.tiempo_restante($concurso->cod_concurso,$concurso->tiempo_inicio,$concurso->tiempo_desconjelar,'final').'</td></tr>
 							</table>
 						</div>
@@ -262,13 +262,13 @@ $("#resultado_div").load("tabla_resultado.php?cod_concurso='.$concurso->cod_conc
 			<thead>
 			<tr>
 			<th width="80px">
-			Nro
+			Nro.
 			</th>
 			<th>Nombre</th>
 			<th>Inicio</th>
-			<th>Congelar</th>
-			<th>Finalización</th>
-			<th>Descongelar</th>
+			<th>Congelar resultado</th>
+			<th>Finalizar concurso</th>
+			<th>Mostrar resultado</th>
 			<th style="text-align:center">Estado</th></tr>
 			</thead>
 			<tbody>

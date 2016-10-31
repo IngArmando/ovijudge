@@ -12,6 +12,7 @@ class usuario extends campo_persona{
 		public	$ultima_ip;
 		public $ip_actual;
 		public $cod_tipo_usuario;
+		public $cod_institucion;
 // CREAMOS LOS METODOS SET		
 
 			public function set_cod_usuario($cod_usuario){
@@ -50,6 +51,9 @@ class usuario extends campo_persona{
 			public function set_cod_tipo_usuario($cod_tipo_usuario){
 					$this->cod_tipo_usuario= $cod_tipo_usuario;
 			}
+			public function set_cod_institucion($cod_institucion){
+					$this->cod_institucion=$cod_institucion;
+				}
 		
 
 	public function registrar(){		
@@ -57,7 +61,7 @@ class usuario extends campo_persona{
 	}
 	public function registrar_por_administrador(){
 		parent::registrar();	
-		return parent::ejecutar("INSERT INTO usuario (ultima_actividad,fecha_clave,clave,cod_tipo_usuario,cedula) VALUES (NOW(),NOW(),'$this->clave','$this->cod_tipo_usuario','$this->cedula')");
+		return parent::ejecutar("INSERT INTO usuario (ultima_actividad,fecha_clave,clave,cod_tipo_usuario,cedula,cod_institucion) VALUES (NOW(),NOW(),'$this->clave','$this->cod_tipo_usuario','$this->cedula','$this->cod_institucion')");
 	}
 	public function consultar(){		
 		$res=parent::ejecutar("SELECT usuario.*, tipo_usuario.nombre as nombre_tipo_usuario, persona.*, date_format(persona.fecha_nacimiento,'%d-%m-%Y') as fecha_nacimiento, date_format(usuario.ultima_actividad,'%d-%m-%Y %h:%i:%s %p') as ultima_actividad, municipio.nombre as nombre_municipio, parroquia.nombre as nombre_parroquia, estado.nombre as nombre_estado FROM usuario INNER JOIN persona ON persona.cedula=usuario.cedula INNER JOIN parroquia ON persona.cod_parroquia=parroquia.cod_parroquia INNER JOIN municipio ON municipio.cod_municipio=parroquia.cod_municipio INNER JOIN estado ON estado.cod_estado=municipio.cod_estado INNER JOIN tipo_usuario ON tipo_usuario.cod_tipo_usuario=usuario.cod_tipo_usuario WHERE cod_usuario='$this->cod_usuario'");
@@ -91,7 +95,7 @@ class usuario extends campo_persona{
 	}
 	public function modificar(){	
 		parent::modificar();
-		return parent::ejecutar("UPDATE usuario SET cod_tipo_usuario='$this->cod_tipo_usuario',estatus='$this->estatus' WHERE cedula='$this->cedula'");
+		return parent::ejecutar("UPDATE usuario SET cod_tipo_usuario='$this->cod_tipo_usuario',estatus='$this->estatus',cod_institucion='$this->cod_institucion' WHERE cedula='$this->cedula'");
 	}
 
 	public function editar_limitado(){		

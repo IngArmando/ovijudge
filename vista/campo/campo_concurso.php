@@ -13,7 +13,7 @@ require_once("modelo/class_concurso.php");
 						<label>
 							Nombre completo
 						</label>
-							<input title="Solo texto y numeros" pattern="^[a-zA-Z0-9 \u00C0-\u00ff\s]+$" required id="nombre" class="form-control"  type="text" name="nombre" value="'.$this->nombre.'" />
+							<input maxlength="180" title="Solo texto y numeros" pattern="^[a-zA-Z0-9 \u00C0-\u00ff\s]+$" required id="nombre" class="form-control"  type="text" name="nombre" value="'.$this->nombre.'" />
 					</div>
 
 			';
@@ -26,7 +26,7 @@ require_once("modelo/class_concurso.php");
 						<label>
 							Nombre corto
 						</label>
-							<input title="Solo texto y numeros" pattern="^[a-zA-Z0-9 \u00C0-\u00ff\s]+$" required id="nombre_corto" class="form-control"  type="text" name="nombre_corto" value="'.$this->nombre_corto.'" />
+							<input maxlength="90" title="Solo texto y numeros" pattern="^[a-zA-Z0-9 \u00C0-\u00ff\s]+$" required id="nombre_corto" class="form-control"  type="text" name="nombre_corto" value="'.$this->nombre_corto.'" />
 					</div>
 
 			';
@@ -82,7 +82,7 @@ require_once("modelo/class_concurso.php");
 				
 					<div class="col-md-3">
 						<label>
-							Fecha y hora de congelación
+							Congelar resultados
 						</label>
 						<div class="form-group">
 							<div class="input-group date" id="tiempo_conjelacion">
@@ -102,7 +102,7 @@ require_once("modelo/class_concurso.php");
 				
 					<div class="col-md-3">
 						<label>
-							Fecha y hora de finalización
+							Finalizar concurso
 						</label>
 					<div class="form-group">
 						<div class="input-group date" id="tiempo_final">
@@ -122,7 +122,7 @@ require_once("modelo/class_concurso.php");
 				
 					<div class="col-md-3">
 						<label>
-							Fecha y hora de descongelación
+							Mostrar resultados
 						</label>
 						<div class="form-group">
 							<div class="input-group date" id="tiempo_desconjelar">

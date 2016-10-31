@@ -54,7 +54,7 @@ date_default_timezone_set("America/Manaus");
 			<th style="text-align:center">Equipo</th>
 			<th style="text-align:center">Puntaje</th>
 			'.$th_problema.'
-			<th style="text-align:center">Tiempo (min)</th>
+			<th style="text-align:center" title="Expresado en minutos">Tiempo acumulado</th>
 			</tr>
 		</thead>	
 		<tbody>

@@ -1,5 +1,6 @@
 <?php
 require_once("vista/campo/campo_usuario.php");
+
 require_once("vista/campo/campo_persona.php");
 class usuario_admin extends campo_usuario{
 		public function reporte_html_general($vista){
@@ -244,6 +245,7 @@ class usuario_admin extends campo_usuario{
 					
 					'.$this->cod_tipo_usuario(0).'
 					'.$this->cod_usuario().'
+					'.$this->cod_institucion().'
 				</div>
 					
 				<div class="row"><br>

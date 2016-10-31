@@ -1,15 +1,6 @@
 <?php
 
-	/*
-	|| #################################################################### ||
-	|| #                             chat                            # ||
-	|| # ---------------------------------------------------------------- # ||
-	|| #    Copyright ©2010-2012 ArrowSuites LLC. All Rights Reserved.    # ||
-	|| # This file may not be redistributed in whole or significant part. # ||
-	|| # ---------------- chat IS NOT FREE SOFTWARE ---------------- # ||
-	|| #   http://www.chat.com | http://www.chat.com/license/   # ||
-	|| #################################################################### ||
-	*/
+
 		
 	/**
 	 * Login the admin if user details are correct
@@ -101,9 +92,12 @@
 		}
 		else
 		{
-			$smarty->assign('error', $error);
 			
-			$smarty->display(dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR . "layout/pages_login.tpl");
+			$smarty->assign('error', $error);
+			$dir=dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR . "layout/pages_login.tpl";
+			
+			$smarty->display($dir);
+			
 			exit();
 		}
 	}

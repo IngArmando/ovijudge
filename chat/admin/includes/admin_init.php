@@ -1,15 +1,5 @@
 <?php
 
-	/*
-	|| #################################################################### ||
-	|| #                             chat                            # ||
-	|| # ---------------------------------------------------------------- # ||
-	|| #    Copyright ©2010-2012 ArrowSuites LLC. All Rights Reserved.    # ||
-	|| # This file may not be redistributed in whole or significant part. # ||
-	|| # ---------------- chat IS NOT FREE SOFTWARE ---------------- # ||
-	|| #   http://www.chat.com | http://www.chat.com/license/   # ||
-	|| #################################################################### ||
-	*/
 	
 	header("Cache-Control: no-cache, must-revalidate");
 	header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
@@ -60,6 +50,7 @@
 	$smarty->assign('login_post', get_var('login'));
 	
 	// Check if logged in as admin
+	
 	admin_check_login($error);
 	
 	//session_write_close();
@@ -70,6 +61,7 @@
 		FROM chat_themes
 		WHERE chat_themes.default = 1
 	");
+	
 	$row = $db->fetch_array($result);
 	$theme = $row['folder'];
 	$write = check_config_file();

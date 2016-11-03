@@ -413,6 +413,15 @@ $salida.='
 			';
 			}
 			break;
+			case "actualizar":{
+			$salida.='
+			<button onclick="return validar()" id="modificar" class="btn btn-default btn-lg" type="submit" name="evento" value="modificar">
+				<span class="glyphicon glyphicon-edit" > </span>
+				Actualizar
+			</button>
+			';
+			}
+			break;
 			case "editar_volver":{
 			$salida.='
 			<input type="hidden" name="volver" value="true">

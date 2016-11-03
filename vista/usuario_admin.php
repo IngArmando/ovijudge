@@ -27,10 +27,10 @@ class usuario_admin extends campo_usuario{
 			<thead>
 			<tr>
 			<th width="80px">
-					Nro
+					Nro.
 					</th>
-					<th>Cedula</th><th>Nombre</th><th>Apellido</th><th>Tipo de usuario</th>
-					<th>Sexo</th><th>Correo</th><th>Teléfono Movil</th><th>Telefono Fijo</th><th>Fecha de nacimiento (dd-mm-yyyy)</th><th>Estatus</th></tr>
+					<th>Cédula </th><th>Nombre</th><th>Apellido</th><th>Tipo de usuario</th>
+					<th>Sexo</th><th>Correo</th><th>Teléfono Móvil</th><th>Teléfono Fijo</th><th>Fecha de nacimiento (dd-mm-yyyy)</th><th>Estatus</th></tr>
 					</thead>
 					<tbody>
 					';
@@ -88,7 +88,7 @@ class usuario_admin extends campo_usuario{
 			
 			<div class="row">
 						<div class="col-md-3 col-md-offset-3">
-							<label>Cedula:</label>
+							<label>Cédula:</label>
 							'.$this->cedula.'
 						</div>
 					</div>
@@ -120,7 +120,7 @@ class usuario_admin extends campo_usuario{
 				</div>
 				<div class="row">
 					<div class="col-md-3 col-md-offset-3">
-						<label>Teléfono Movil:</label>
+						<label>Teléfono Móvil:</label>
 							'.$this->telefono_movil.'
 					</div>
 					<div class="col-md-3">
@@ -174,7 +174,7 @@ class usuario_admin extends campo_usuario{
 		switch($tipo){
 			case 'modificar': {
 				parent::consultar();
-				$boton=botones('modificar');
+				$boton=botones('actualizar');
 				$titulo='Modificar Usuario';
 				$bloqueo=true;
 			}break;

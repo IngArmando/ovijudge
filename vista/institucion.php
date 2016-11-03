@@ -36,7 +36,7 @@ class vista_institucion extends campo_institucion{
 			<th width="80px">
 			Nro
 			</th>
-			<th>Codigo</th><th>Nombre corto</th><th>Nombre</th><th>País</th><th>Descripción</th></tr>
+			<th>Código</th><th>Nombre corto</th><th>Nombre</th><th>País</th><th>Descripción</th></tr>
 			</thead>
 			<tbody>
 			';
@@ -90,7 +90,7 @@ class vista_institucion extends campo_institucion{
 			<div class="col-md-3"></div>
 				<div class="col-md-3">
 					<label>
-						Codigo: 
+						Código: 
 					</label>
 					'.$this->cod_institucion.'
 				</div>

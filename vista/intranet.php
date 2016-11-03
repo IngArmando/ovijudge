@@ -17,7 +17,7 @@ echo '
 <div class="col-md-8">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			Ultimos 15 envios
+			Últimos 15 envíos
 		</div>
 		<div class="panel-body">
 			'.ultimos_envios().'
@@ -27,7 +27,7 @@ echo '
 <div class="col-md-4">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			Ultimos 15 concursos
+			Últimos 15 concursos
 		</div>
 		<div class="panel-body">
 			'.ultimos_concursos().'
@@ -68,7 +68,7 @@ function ultimos_concursos(){
 			$td.='</tr>';
 		}
 		$html='<table class="table table-striped" style="font-size:13px"><tr>
-			<th>Cod.</th>
+			<th>Cód.</th>
 			<th>Inicio</th>
 			<th>Nombre</th>
 			<th>Estatus</th>

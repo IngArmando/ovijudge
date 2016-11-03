@@ -130,7 +130,7 @@
 										<b>Equipo:</b> <a href="?vista=equipo&cod_equipo='.$cod_equipo.'&evento=reporte_html_individual&ref=tabla_posicion">'.$nombre_equipo.'</a><br>
 									</div>
 									<div class="panel-heading">
-										Estadisticas
+										Estadísticas
 									</div>
 										<div class="panel-body">
 											<b>Problemas resueltos:</b> '.$this->problemas_resueltos().'<br>

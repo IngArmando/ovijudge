@@ -7,7 +7,7 @@
 			$cedula=$this->cedula;
 			return '<div class="col-md-3">
 					<label>
-						Cedula <span style="color:red" title="Campo obligatorio">(*)</span>
+						Cédula <span style="color:red" title="Campo obligatorio">(*)</span>
 					</label>
 							<input  type="hidden" id="nacionalidad_cedula" name="nacionalidad_cedula" value="'.(explode("-",$cedula)[0] ? explode("-",$cedula)[0] : "V").'">
 					<div class="input-group">
@@ -82,7 +82,7 @@
 		public function telefono_movil($bloquear){
 				return '<div class="col-md-3">
 					<label>
-						Teléfono Movil <span style="color:red" title="Campo obligatorio">(*)</span>
+						Teléfono Móvil <span style="color:red" title="Campo obligatorio">(*)</span>
 					</label>
 						<input placeholder="4140000000" required maxlength="10" id="telefono_movil" title="Indique un numero de telefono valido. Ej: 4245138790 (Solo debe contener numeros)" pattern="^[0-9]{10}$" class="form-control"  type="text" onkeyup="this.value=this.value.toUpperCase()" name="telefono_movil" value="'.$this->telefono_movil.'" />
 				</div>';

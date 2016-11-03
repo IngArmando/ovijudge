@@ -11,7 +11,7 @@ require_once("modelo/class_problema.php");
 				
 					<div class="col-md-3">
 						<label>
-							Titulo <span style="float:right; color:red" title="campo obligatorio"> (*) </span>
+							Título <span style="float:right; color:red" title="campo obligatorio"> (*) </span>
 						</label>
 							<input required id="nombre" class="form-control"  type="text" name="nombre" value="'.$this->nombre.'" />
 					</div>
@@ -25,7 +25,7 @@ require_once("modelo/class_problema.php");
 					<div class="col-md-2">
 						
 							<label>
-								Limite de tiempo<span style="float:right; color:red" title="campo obligatorio"> (*) </span>
+								Límite de tiempo<span style="float:right; color:red" title="campo obligatorio"> (*) </span>
 							</label>
 							<div class="input-group">
 								<input required  min="1" id="limite_tiempo" class="form-control"  type="number" name="limite_tiempo" value="'.$this->limite_tiempo.'" />
@@ -42,7 +42,7 @@ require_once("modelo/class_problema.php");
 				
 					<div class="col-md-2">
 						<label>
-							Limite de memoria <span style="float:right; color:red" title="campo obligatorio"> (*) </span>
+							Límite de memoria <span style="float:right; color:red" title="campo obligatorio"> (*) </span>
 						</label>
 							<div class="input-group">
 							<input required min="1024" id="limite_memoria" class="form-control"  type="number" name="limite_memoria" value="'.$this->limite_memoria.'" />

@@ -5,10 +5,11 @@ class vista_pregunta_seguridad extends campo_pregunta_seguridad{
 	
 	
 	public function formulario($tipo){
+
 		switch($tipo){
 			case 'modificar': {
 				$this->consultar();
-				$boton=botones('modificar');
+				$boton=botones('actualizar');
 				$titulo='Modificar Preguntas de Seguridad';
 			}break;
 			case 'registrar':{

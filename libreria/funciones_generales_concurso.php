@@ -170,7 +170,7 @@ return $html;
 				<div class="row">
 					<div class="col-md-12" id="loader" style="text-align:center; display:none;"><img src="images/preloader.gif"><br>Analizando codigo...</div>
 					<div class="col-md-12" id="ventana_codigo">
-						<label>Escriba o pegue aqui su codigo:</label>';
+						<label>Escriba o pegue aquí su código :</label>';
 												
 						$html.='<div id="editor">'.htmlspecialchars($thisa->codigo_fuente).'</div>
 						

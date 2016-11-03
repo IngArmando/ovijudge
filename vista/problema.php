@@ -36,13 +36,13 @@ class vista_problema extends campo_problema{
 			<thead>
 			<tr>
 			<th width="80px">
-			Nro
+			Nro.
 			</th>
-			<th>Codigo</th>
-			<th>Titulo</th>
-			<th>Enunciado publico</th>
+			<th>Código</th>
+			<th>Título</th>
+			<th>Enunciado público</th>
 			<th>Imagen</th>
-			<th>Limite de tiempo</th>
+			<th>Límite de tiempo</th>
 			
 </tr>
 			</thead>
@@ -105,12 +105,12 @@ class vista_problema extends campo_problema{
 				<div class="col-md-1"></div>
 				<div class="col-md-5">
 					<label>
-						Codigo: 
+						Código: 
 					</label> '.$this->cod_problema.'
 				</div>
 			<div class="col-md-5">
 					<label>
-						Titulo: 
+						Título: 
 					</label> '.$this->nombre.'
 				</div>
 			</div>
@@ -120,7 +120,7 @@ class vista_problema extends campo_problema{
 			<div class="col-md-1"></div>
 				<div class="col-md-5">
 					<label>
-						Limite de tiempo: 
+						Límite de tiempo: 
 					</label> '.$this->limite_tiempo.' Segundos
 				</div>
 				<div class="col-md-5">
@@ -161,7 +161,7 @@ class vista_problema extends campo_problema{
 			switch($tipo){
 				case 'modificar': {
 					parent::consultar();
-					$boton=botones('modificar');
+					$boton=botones('actualizar');
 					$titulo='Modificar Problema';
 				}break;
 				case 'registrar':{

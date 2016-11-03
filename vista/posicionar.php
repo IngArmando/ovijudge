@@ -4,7 +4,7 @@
 	</div>
 	<div class="panel-body">
 		<form method="post">
-			Arrastre las vistas a la posicion deseada<br><br>
+			Arrastre las vistas a la posición deseada<br><br>
 			<?php
 			echo $html;
 			?>

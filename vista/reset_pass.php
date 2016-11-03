@@ -2,13 +2,13 @@
 <form method="post" >
 <div class="panel panel-default">
 	<div class="panel-heading">
-		RESETEAR CONTRASEÑAS DE USUARIOS
+		RESETEAR CLAVE DE USUARIOS
 	</div>
 	<div class="row">
 
 		<div class="col-md-4 col-md-offset-4">
 			<label>
-				Cedula del usuario
+				Cédula del usuario
 			</label>
 						<?php
 						echo mostrar_cedula();
@@ -18,7 +18,7 @@
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
 			<label>
-				Contraseña de administrador
+				Clave de administrador
 			</label>
 			<input required type="password" name="clave_administrador" class="form-control">
 			

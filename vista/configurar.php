@@ -6,7 +6,7 @@
 		<div class="panel-body">
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4">
-					<label>Tiempo de caducidad para contraseñas</label><br>
+					<label>Tiempo de caducidad para claves</label><br>
 					<select required class="form-control" name="caducidad" id="caducidad" >
 						<option value="30">30 Dias</option>
 						<option value="60">60 Dias</option>
@@ -40,13 +40,13 @@
 			</div>
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4">
-					<label>Tiempo maximo de inactividad (Min.)</label>
+					<label>Tiempo máximo de inactividad (Min.)</label>
 					<input required type="number" min="1" name="inactividad" class="form-control"  value="<?php echo $row_configurar['inactividad']; ?>">
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-4 col-md-offset-4" style="text-align:center"><br>
-					<button type="submit" name="evento" value="editar" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-floppy-disk"> </span> Guardar</button>
+					<button type="submit" name="evento" value="editar" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-floppy-disk"> </span> Actualizar</button>
 				</div>
 			</div>
 		</div>

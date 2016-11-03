@@ -52,7 +52,7 @@ class participar_entrenamiento extends envio_entrenamiento{
 			<th width="80px">
 			Nro
 			</th>
-			<th style="text-align:center">Codigo</th>
+			<th style="text-align:center">Código</th>
 			<th style="text-align:center">Resuelto en</th>
 			<th style="text-align:center">Nombre</th>
 			<th style="text-align:center">Enunciado</th>
@@ -162,7 +162,7 @@ class participar_entrenamiento extends envio_entrenamiento{
 			<div class="row">
 				<div class="col-md-3">
 					<label>
-						Codigo: '.$this->cod_problema.'
+						Código: '.$this->cod_problema.'
 					</label>
 				</div>
 			</div>
@@ -178,7 +178,7 @@ class participar_entrenamiento extends envio_entrenamiento{
 			<div class="row">
 				<div class="col-md-3">
 					<label>
-						Limite de tiempo: '.$this->limite_tiempo.'
+						Límite de tiempo: '.$this->limite_tiempo.'
 					</label>
 				</div>
 			</div>
@@ -186,7 +186,7 @@ class participar_entrenamiento extends envio_entrenamiento{
 			<div class="row">
 				<div class="col-md-3">
 					<label>
-						Limite de memoria: '.$this->limite_memoria.'
+						Límite de memoria: '.$this->limite_memoria.'
 					</label>
 				</div>
 			</div>
@@ -194,7 +194,7 @@ class participar_entrenamiento extends envio_entrenamiento{
 			<div class="row">
 				<div class="col-md-3">
 					<label>
-						Limite de salida: '.$this->limite_salida.'
+						Límite de salida: '.$this->limite_salida.'
 					</label>
 				</div>
 			</div>
